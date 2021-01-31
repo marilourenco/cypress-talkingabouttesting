@@ -2,6 +2,7 @@
 
 describe('Tickets', () => {
   beforeEach(() => cy.visit('https://bit.ly/2XSuwCW'));
+
   it('fills all the text input fields', () => {
     const firstName = 'Nome de Fulana';
     const lastName = 'Sobrenome de Fulana';
@@ -30,5 +31,14 @@ describe('Tickets', () => {
     cy.get('#friend').uncheck();
   });
 
-  it("has 'TICKETBOX' header's heading", () => {});
+  it("has 'TICKETBOX' header's heading", () => {
+    cy.get('header h1').should('contain', 'TICKETBOX');
+  });
+
+  it('alerts on invalid email', () => {
+    cy.get('#email').type('email.email.com');
+    cy.get('#email.invalid').should('exist');
+    cy.get('#email').clear().type('email@email.com');
+    cy.get('#email.invalid').should('not.exist');
+  });
 });
