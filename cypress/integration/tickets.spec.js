@@ -29,4 +29,15 @@ describe('Tickets', () => {
     cy.get('button[type="reset"]').click();
     cy.get('@submitButton').should('be.disabled');
   });
+
+  it('fill only mandatory fields', () => {});
+  const firstName = 'Fulana';
+  const lastName = 'de Tal';
+  const email = 'email@email.com';
+
+  cy.fillMandatoryField(data);
+
+  cy.get('button[type="submit"]').as('submitButton').should('not.be.disabled');
+  cy.get('#agree').uncheck();
+  cy.get('@submitButton').should('be.disabled');
 });

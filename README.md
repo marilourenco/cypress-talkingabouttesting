@@ -1,8 +1,5 @@
 # Cypress Basic - Talking About Test Course
 
+# About
 
-#About
-
-
-#Learning Path
-
+# Learning Path
