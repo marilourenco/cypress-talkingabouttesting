@@ -1,0 +1,29 @@
+{
+  "name": "cypress-talkingabouttesting",
+  "version": "1.0.0",
+  "description": "cypress project",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "cypress": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marilourenco/cypress-talkingabouttesting.git"
+  },
+  "keywords": [
+    "cypress",
+    "test",
+    "automation",
+    "e2e"
+  ],
+  "author": "Marilene Lourenco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marilourenco/cypress-talkingabouttesting/issues"
+  },
+  "homepage": "https://github.com/marilourenco/cypress-talkingabouttesting#readme",
+  "devDependencies": {
+    "cypress": "^6.3.0"
+  }
+}
