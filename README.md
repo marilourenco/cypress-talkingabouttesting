@@ -1,1 +1,1 @@
-# cypress-talkingabouttesting
+# Cypress Basic - Talking About Test Course
