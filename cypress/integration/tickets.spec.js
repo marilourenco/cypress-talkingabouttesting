@@ -2,43 +2,31 @@
 
 describe('Tickets', () => {
   beforeEach(() => cy.visit('https://bit.ly/2XSuwCW'));
+  it('fills and reset the entire form', () => {
+    const firstName = 'Fulana';
+    const lastName = 'de Tal';
+    const fullname = `${firstName} ${lastName}`;
 
-  it('fills all the text input fields', () => {
-    const firstName = 'Nome de Fulana';
-    const lastName = 'Sobrenome de Fulana';
     cy.get('#first-name').type(firstName);
     cy.get('#last-name').type(lastName);
     cy.get('#email').type('email@email.com');
-    cy.get('#requests').type('Vegetarian');
-    cy.get('#signature').type(`${firstName} ${lastName}`);
-  });
-
-  it('select two tickets', () => {
     cy.get('#ticket-quantity').select('2');
-  });
-
-  it('select "vip" ticket type', () => {
     cy.get('#vip').check();
-  });
-
-  it('select "social-media" checkbox', () => {
-    cy.get('#social-media').check();
-  });
-
-  it('selects "friend" and "publication" checkbox, then uncheck "friend" checkbox', () => {
     cy.get('#friend').check();
-    cy.get('#publication').check();
-    cy.get('#friend').uncheck();
-  });
+    cy.get('#requests').type('Vegetarian');
 
-  it("has 'TICKETBOX' header's heading", () => {
-    cy.get('header h1').should('contain', 'TICKETBOX');
-  });
+    cy.get('.agreement p').should(
+      'contain',
+      `I, ${fullname}, wish to buy 2 VIP tickets`
+    );
 
-  it('alerts on invalid email', () => {
-    cy.get('#email').type('email.email.com');
-    cy.get('#email.invalid').should('exist');
-    cy.get('#email').clear().type('email@email.com');
-    cy.get('#email.invalid').should('not.exist');
+    cy.get('#agree').click();
+    cy.get('#signature').type(fullname);
+
+    cy.get('button[type="submit"]')
+      .as('submitButton')
+      .should('not.be.disabled');
+    cy.get('button[type="reset"]').click();
+    cy.get('@submitButton').should('be.disabled');
   });
 });
